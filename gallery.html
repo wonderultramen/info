@@ -21,45 +21,6 @@
 					<header id="header">
 						<a href="elements.html" class="logo">dokumentasi</a>
 					</header>
-					<script>
-// Fungsi untuk membuka lightbox dan menampilkan gambar besar
-const galleryImages = document.querySelectorAll('.gallery-img');
-const lightbox = document.createElement('div');
-lightbox.classList.add('lightbox');
-
-// Membuat elemen <img> untuk menampilkan gambar dalam lightbox
-const lightboxImage = document.createElement('img');
-lightbox.appendChild(lightboxImage);
-
-// Membuat tombol close untuk lightbox
-const closeButton = document.createElement('span');
-closeButton.textContent = '×';
-closeButton.classList.add('lightbox-close');
-lightbox.appendChild(closeButton);
-
-// Menambahkan lightbox ke body
-document.body.appendChild(lightbox);
-
-// Menambahkan event listener ke gambar galeri
-galleryImages.forEach(image => {
-    image.addEventListener('click', () => {
-        lightboxImage.src = image.src; // Menyalin URL gambar yang diklik
-        lightbox.style.display = 'flex'; // Menampilkan lightbox
-    });
-});
-
-// Menambahkan event listener ke tombol close untuk menutup lightbox
-closeButton.addEventListener('click', () => {
-    lightbox.style.display = 'none'; // Menyembunyikan lightbox
-});
-
-// Menutup lightbox saat mengklik area luar gambar
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-    }
-});
-</script>
 
 				<!-- Nav -->
 					<nav id="nav">
@@ -73,7 +34,7 @@ lightbox.addEventListener('click', (e) => {
 							<li><a href="https://chat.whatsapp.com/CO4FgK691yeKb19EB0DFaA" class="icon brands fa-whatsapp"><span class="label">Whatsapp</span></a></li>
 							<li><a href="https://www.youtube.com/@wonderultramen" class="icon brands fa-youtube"><span class="label">Youtube</span></a></li>
 							<li><a href="https://mail.google.com/mail/u/0/#inbox" class="icon brands fa-google"><span class="label">Email</span></a></li>
-							<li><a href="#" class="icon brands fa-wpforms"><span class="label">Form</span></a></li>
+							<li><a href="elements.html" class="icon brands fa-wpforms"><span class="label">Form</span></a></li>
 						</ul>
 					</nav>
 
