@@ -10,7 +10,52 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
+		<style>
+        /* CSS untuk Galeri */
+        .gallery-section {
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsif untuk Mobile */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* YouTube Embed Style */
+        iframe {
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
 	</head>
 	<body class="is-preload">
 
@@ -51,18 +96,18 @@
 								<!-- Galeri Kegiatan -->
 <section id="gallery" class="gallery-section">
     
-    <div class="gallery">
-        <img id="image1" class="gallery-img" src="images/kegiatan1.jpg" alt="Kegiatan 1">
-        <img id="image2" class="gallery-img" src="images/kegiatan2.jpg" alt="Kegiatan 2">
-        <img id="image3" class="gallery-img" src="images/kegiatan3.jpg" alt="Kegiatan 3">
-        <img id="image4" class="gallery-img" src="images/kegiatan4.jpg" alt="Kegiatan 4">
-        <img id="image5" class="gallery-img" src="images/kegiatan5.jpg" alt="Kegiatan 5">
-        <img id="image6" class="gallery-img" src="images/kegiatan6.jpg" alt="Kegiatan 6">
-		<img id="image6" class="gallery-img" src="images/kegiatan7.jpg" alt="Kegiatan 7">
-		<img id="image6" class="gallery-img" src="images/kegiatan8.jpg" alt="Kegiatan 8">
-		<img id="image6" class="gallery-img" src="images/kegiatan9.jpg" alt="Kegiatan 9">
-		<img id="image6" class="gallery-img" src="images/kegiatan10.jpg" alt="Kegiatan 10">
-        
+     <div class="gallery">
+                    <img id="image1" class="gallery-img" src="images/kegiatan1.jpg" alt="Kegiatan 1">
+                    <img id="image2" class="gallery-img" src="images/kegiatan2.jpg" alt="Kegiatan 2">
+                    <img id="image3" class="gallery-img" src="images/kegiatan3.jpg" alt="Kegiatan 3">
+                    <img id="image4" class="gallery-img" src="images/kegiatan4.jpg" alt="Kegiatan 4">
+                    <img id="image5" class="gallery-img" src="images/kegiatan5.jpg" alt="Kegiatan 5">
+                    <img id="image6" class="gallery-img" src="images/kegiatan6.jpg" alt="Kegiatan 6">
+                    <img id="image7" class="gallery-img" src="images/kegiatan7.jpg" alt="Kegiatan 7">
+                    <img id="image8" class="gallery-img" src="images/kegiatan8.jpg" alt="Kegiatan 8">
+                    <img id="image9" class="gallery-img" src="images/kegiatan9.jpg" alt="Kegiatan 9">
+                    <img id="image10" class="gallery-img" src="images/kegiatan10.jpg" alt="Kegiatan 10">
+				
         <!-- Video kegiatan (YouTube embed) -->
         <iframe width="100%" height="315" src="https://www.youtube.com/embed/ZyvIqQmHO44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <iframe width="100%" height="315" src="https://www.youtube.com/embed/sJvOBW-lCmc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
