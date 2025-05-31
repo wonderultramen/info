@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>dokumentasi kegiatan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="elements.html" class="logo">dokumentasi</a>
+					</header>
+					<script>
+// Fungsi untuk membuka lightbox dan menampilkan gambar besar
+const galleryImages = document.querySelectorAll('.gallery-img');
+const lightbox = document.createElement('div');
+lightbox.classList.add('lightbox');
+
+// Membuat elemen <img> untuk menampilkan gambar dalam lightbox
+const lightboxImage = document.createElement('img');
+lightbox.appendChild(lightboxImage);
+
+// Membuat tombol close untuk lightbox
+const closeButton = document.createElement('span');
+closeButton.textContent = '×';
+closeButton.classList.add('lightbox-close');
+lightbox.appendChild(closeButton);
+
+// Menambahkan lightbox ke body
+document.body.appendChild(lightbox);
+
+// Menambahkan event listener ke gambar galeri
+galleryImages.forEach(image => {
+    image.addEventListener('click', () => {
+        lightboxImage.src = image.src; // Menyalin URL gambar yang diklik
+        lightbox.style.display = 'flex'; // Menampilkan lightbox
+    });
+});
+
+// Menambahkan event listener ke tombol close untuk menutup lightbox
+closeButton.addEventListener('click', () => {
+    lightbox.style.display = 'none'; // Menyembunyikan lightbox
+});
+
+// Menutup lightbox saat mengklik area luar gambar
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+    }
+});
+</script>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">halaman</a></li>
+							<li><a href="generic.html">Tentang kami</a></li>
+							<li class="active"><a href="gallery.html">Kegiatan</a></li>
+							<li><a href="elements.html">Pendaftaran</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://chat.whatsapp.com/CO4FgK691yeKb19EB0DFaA" class="icon brands fa-whatsapp"><span class="label">Whatsapp</span></a></li>
+							<li><a href="https://www.youtube.com/@wonderultramen" class="icon brands fa-youtube"><span class="label">Youtube</span></a></li>
+							<li><a href="https://mail.google.com/mail/u/0/#inbox" class="icon brands fa-google"><span class="label">Email</span></a></li>
+							<li><a href="#" class="icon brands fa-wpforms"><span class="label">Form</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>dokumentasi<br />
+									kegiatan</h1>
+									
+								</header>
+								<!-- Galeri Kegiatan -->
+<section id="gallery" class="gallery-section">
+    
+    <div class="gallery">
+        <img id="image1" class="gallery-img" src="images/kegiatan1.jpg" alt="Kegiatan 1">
+        <img id="image2" class="gallery-img" src="images/kegiatan2.jpg" alt="Kegiatan 2">
+        <img id="image3" class="gallery-img" src="images/kegiatan3.jpg" alt="Kegiatan 3">
+        <img id="image4" class="gallery-img" src="images/kegiatan4.jpg" alt="Kegiatan 4">
+        <img id="image5" class="gallery-img" src="images/kegiatan5.jpg" alt="Kegiatan 5">
+        <img id="image6" class="gallery-img" src="images/kegiatan6.jpg" alt="Kegiatan 6">
+		<img id="image6" class="gallery-img" src="images/kegiatan7.jpg" alt="Kegiatan 7">
+		<img id="image6" class="gallery-img" src="images/kegiatan8.jpg" alt="Kegiatan 8">
+		<img id="image6" class="gallery-img" src="images/kegiatan9.jpg" alt="Kegiatan 9">
+		<img id="image6" class="gallery-img" src="images/kegiatan10.jpg" alt="Kegiatan 10">
+        
+        <!-- Video kegiatan (YouTube embed) -->
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/ZyvIqQmHO44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/sJvOBW-lCmc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/R5INxC6OayQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/eWGMQ5oP3ik" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</section>
+				<!-- Footer -->
+					
+							<section>
+<p>&copy; 2025 | Wonder Ultramen Mahasiswa Community| Semua hak cipta dilindungi.
+						</section>
+					</footer>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
