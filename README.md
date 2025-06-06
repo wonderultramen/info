@@ -1,1 +1,1 @@
-# mahasiswa-community
+# info
