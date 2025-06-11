@@ -1,85 +1,208 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>DAFTAR ANGGOTA</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!-- Tambahkan baris ini untuk logo di tab -->
-		<link rel="icon" type="image/png" href="images/logo.png" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendaftaran - Wonder Ultramen</title>
+  <link rel="icon" href="assets/images/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #6a11cb, #2575fc, #00c9ff, #92fe9d);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
-				<!-- Header -->
-					<header id="header">
-						<a href="elements.html" class="logo">REGISTER</a>
-					</header>
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="index.html">halaman</a></li>
-							<li><a href="generic.html">Tentang kami</a></li>
-							<li><a href="gallery.html">Kegiatan</a></li>
-							<li class="active"><a href="elements.html">Pendaftaran</a></li>
-							<li><a href="berita.html">Berita</a></li>
-							<li><a href="jadwal.html">Jadwal</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://chat.whatsapp.com/CO4FgK691yeKb19EB0DFaA" class="icon brands fa-whatsapp"><span class="label">Whatsapp</span></a></li>
-							<li><a href="https://www.youtube.com/@wonderultramen" class="icon brands fa-youtube"><span class="label">Youtube</span></a></li>
-							<li><a href="https://mail.google.com/mail/u/0/#inbox" class="icon brands fa-google"><span class="label">Email</span></a></li>
-							<li><a href="https://www.facebook.com/profile.php?id=61576940013781" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
-						</ul>
-					</nav>
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
-				<!-- Main -->
-					<div id="main">
+    .logo {
+      width: 100px;
+      margin-bottom: 20px;
+    }
 
-						<!-- Post -->
-							<section class="post">
-								<header class="major">
-									<h1>pendaftaran<br />
-									anggota</h1>
-									<div class="image main"><img src="images/kta.jpg" alt="" /></div>
-								</header>
- <!-- Pendaftaran -->
-    <section id="registration" class="registration-section">
-            <h2 class="section-title">Halaman Pendaftaran Anggota Wonder Ultramen Mahasiswa Community</h2>
-            <p class="about-text">Silakan mengisi formulir berikut untuk mendaftar sebagai Anggota Wonder Ultramen.</p>
-            <div class="form-container">
-                <!-- Formulir Google yang responsif -->
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf8x2uQ3zVW1a0GU3fDF2NGCDDbKhTGOcbV_PHmV6XMp1nvOw/viewform?embedded=true"
-                        width="100%" height="1442" frameborder="0" marginheight="0" marginwidth="0">
-                    Memuat…
-                </iframe>
-            </div>
-        </section>
-				<!-- Footer -->
-					
-							<section>
-<p>&copy; 2025 | Wonder Ultramen Mahasiswa Community | Semua hak cipta dilindungi.
-						</section>
-					</footer>
-			</div>
+    h1 {
+      color: #fff;
+    }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
 
-	</body>
+    .centered-text {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      color: #f0f0f0;
+    }
+
+    .main-img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 700px;
+      height: 1200px;
+      margin: 2rem auto;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .cta-button {
+      margin: 2rem auto;
+      padding: 14px 28px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cta-button:hover {
+      opacity: 0.9;
+    }
+  
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 0.5rem;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+
+  .cta-button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .gallery-container,
+  .schedule-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  iframe {
+    height: 600px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  table th, table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Background bintang -->
+  <canvas id="starCanvas"></canvas>
+
+  <img src="assets/images/logo.png" alt="Logo Wonder Ultramen" class="logo" />
+  <h1>Pendaftaran Anggota</h1>
+
+  <div class="container">
+    <p class="centered-text">Silakan isi formulir di bawah ini untuk bergabung bersama komunitas Wonder Ultramen Mahasiswa.</p>
+    <img src="assets/images/kta.jpg" alt="KTA Contoh" class="main-img" />
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf8x2uQ3zVW1a0GU3fDF2NGCDDbKhTGOcbV_PHmV6XMp1nvOw/viewform?embedded=true" allowfullscreen>
+      Memuat…
+    </iframe>
+  </div>
+
+  <a href="index.html"><button class="cta-button">Kembali ke Beranda</button></a>
+
+  <!-- Script animasi bintang -->
+  <script>
+    const canvas = document.getElementById('starCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        speed: Math.random() * 0.5 + 0.2
+      });
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        ctx.fill();
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+      requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+  </script>
+
+</body>
 </html>

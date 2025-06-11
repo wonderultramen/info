@@ -1,122 +1,159 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Wonder Ultramen Mahasiswa Community</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!-- Tambahkan baris ini untuk logo di tab -->
-		<link rel="icon" type="image/png" href="images/logo.png" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wonder Ultramen Mahasiswa Community</title>
+  <link rel="icon" href="assets/images/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      color: white;
+      text-align: center;
+      background: linear-gradient(-45deg, #6a11cb, #2575fc, #00c9ff, #92fe9d);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Wonder<br />
-						Ultramen</h1>
-						<h3>Mahasiswa Community</h3>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Selamat datang</a>
-					</header>
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">halaman</a></li>
-							<li><a href="generic.html">Tentang kami</a></li>
-							<li><a href="gallery.html">Kegiatan</a></li>
-							<li><a href="elements.html">pendaftaran</a></li>
-							<li><a href="berita.html">Berita</a></li>
-							<li><a href="jadwal.html">Jadwal</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://chat.whatsapp.com/CO4FgK691yeKb19EB0DFaA" class="icon brands fa-whatsapp"><span class="label">Whatsapp</span></a></li>
-							<li><a href="https://www.youtube.com/@wonderultramen" class="icon brands fa-youtube"><span class="label">Youtube</span></a></li>
-							<li><a href="https://mail.google.com/mail/u/0/#inbox" class="icon brands fa-google"><span class="label">Email</span></a></li>
-							<li><a href="https://www.facebook.com/profile.php?id=61576940013781" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
-						</ul>
-					</nav>
+    .logo {
+      width: 100px;
+      margin-bottom: 1rem;
+    }
 
-				<!-- Main -->
-					<div id="main">
+    h1, h3 {
+      margin: 0.5rem 0;
+    }
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<span class="date">Kami senang Anda mengunjungi kami</span>
-									<h2><a href="#">organisasi<br />
-									mahasiswa</a></h2>
-								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
-								<p>Website ini hadir sebagai wadah untuk kamu yang ingin berbagi, berdiskusi terbuka, dan belajar coding bersama komunitas yang positif, suportif, dan saling mendukung. Di sini, siapa pun bisa berkembang—baik pemula maupun yang sudah berpengalaman.</p>
-								<p>Tak hanya fokus pada dunia coding, komunitas ini juga menghadirkan berbagai aktivitas seru seperti liburan bareng, kopdar, coding camp, game interaktif, hingga event-event komunitas yang menyenangkan. Semua dirancang untuk membangun kedekatan, semangat belajar, dan rasa kebersamaan.</p>
-								<p>Mari tumbuh bersama di tempat yang bukan hanya soal kode, tapi juga tentang komunitas dan kebersamaan.</p>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Full Story</a></li>
-								</ul>
-							</article>
-</section>
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 2rem auto;
+      width: 100%;
+      max-width: 320px;
+    }
 
-					</div>
-				<!-- Footer -->
-					<footer id="footer">
-							<section>
-								<h3>Email resmi:</h3>
-								<p><a href="#">wonderultramen@gmail.com</a></p>
-							</section>
-							<section>
-								<h3>hubungi kami disini:</h3>
-								<ul class="icons">
-							<li><a href="https://chat.whatsapp.com/CO4FgK691yeKb19EB0DFaA" class="icon brands fa-whatsapp"><span class="label">Twitter</span></a></li>
-							<li><a href="https://www.youtube.com/@wonderultramen" class="icon brands fa-youtube"><span class="label">Facebook</span></a></li>
-							<li><a href="https://mail.google.com/mail/u/0/#inbox" class="icon brands fa-google"><span class="label">Instagram</span></a></li>
-							<li><a href="https://www.facebook.com/profile.php?id=61576940013781" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
-						</ul>
-							</section>
-							<section>
-<p>&copy; 2025 | Wonder Ultramen Mahasiswa Community | Semua hak cipta dilindungi.
-						</section>
-					</footer>
+    .cta-button {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
+    .cta-button:hover {
+      opacity: 0.9;
+    }
 
-			</div>
+    @media (max-width: 768px) {
+      .wrapper {
+        padding: 1rem;
+      }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-		<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/683fb00238f349190a13d94e/1isscf3d5';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+      h1, h2, h3 {
+        font-size: 1.5rem;
+      }
 
-	</body>
+      .cta-button {
+        font-size: 1rem;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="starCanvas"></canvas>
+
+  <div class="wrapper">
+    <img src="assets/images/logo.png" alt="Logo Wonder Ultramen" class="logo" />
+    <h1>Wonder Ultramen</h1>
+    <h3>Mahasiswa Community</h3>
+
+    <div class="buttons">
+      <a href="generic.html"><button class="cta-button">Tentang Kami</button></a>
+      <a href="gallery.html"><button class="cta-button">Kegiatan</button></a>
+      <a href="elements.html"><button class="cta-button">Pendaftaran</button></a>
+      <a href="berita.html"><button class="cta-button">Berita</button></a>
+      <a href="jadwal.html"><button class="cta-button">Jadwal</button></a>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('starCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        speed: Math.random() * 0.5 + 0.2
+      });
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        ctx.fill();
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+      requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+  </script>
+
+</body>
 </html>
