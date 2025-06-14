@@ -181,6 +181,21 @@
 <canvas id="starCanvas"></canvas>
 <canvas id="birdCanvas"></canvas>
 
+
+<audio id="bgAudio" loop>
+  <source src="assets/audio/background.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung audio.
+</audio>
+
+<script>
+  // Putar audio setelah klik pertama
+  window.addEventListener("click", function playAudioOnce() {
+    const audio = document.getElementById("bgAudio");
+    audio.play().catch(err => console.log("Autoplay ditolak:", err));
+    window.removeEventListener("click", playAudioOnce); // hanya dijalankan sekali
+  });
+</script>
+
 <div class="wrapper">
   <img src="assets/images/logo.png" alt="Logo Wonder Ultramen" class="logo" />
   <h1>Wonder Ultramen</h1>
@@ -188,7 +203,7 @@
 
   <div class="buttons">
     <a href="generic.html"><button class="cta-button">Tentang Kami</button></a>
-    <a href="gallery.html"><button class="cta-button">Kegiatan</button></a>
+    <a href="gallery.html"><button class="cta-button">Gallery</button></a>
     <a href="elements.html"><button class="cta-button">Pendaftaran</button></a>
     <a href="berita.html"><button class="cta-button">Berita</button></a>
     <a href="jadwal.html"><button class="cta-button">Jadwal</button></a>
