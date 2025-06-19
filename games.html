@@ -42,6 +42,25 @@
       z-index: 5;
     }
 
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button-row button {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
     #touchControls {
       position: fixed;
       bottom: 10px;
@@ -67,33 +86,14 @@
       background: #00cfff;
     }
 
-    button {
-      background: #00f2ff;
-      padding: 12px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-
     .cta-button {
-      margin: 20px auto;
-      padding: 14px 28px;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
       background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
       color: white;
-      font-weight: bold;
-      cursor: pointer;
-      display: block;
-      max-width: 300px;
-      transition: 0.3s;
     }
 
-    .cta-button:hover {
-      opacity: 0.9;
+    #startBtn {
+      background: #00f2ff;
+      color: black;
     }
 
     h2 {
@@ -114,7 +114,11 @@
     <h2>🚀 Shooter Auto + Mobile</h2>
     <div>Level: <span id="level">1</span> | Skor: <span id="score">0</span></div>
     <canvas id="gameCanvas" width="400" height="600"></canvas>
-    <button id="startBtn" onclick="startGame()">Mulai Game</button>
+
+    <div class="button-row">
+      <button id="startBtn" onclick="startGame()">Mulai Game</button>
+      <a href="index.html"><button class="cta-button">Kembali ke Beranda</button></a>
+    </div>
 
     <div id="popup">
       <h3>🎉 Level <span id="popupLevel">1</span> Selesai!</h3>
@@ -127,8 +131,6 @@
     <button class="btn" ontouchstart="keys['ArrowLeft']=true" ontouchend="keys['ArrowLeft']=false">⬅️</button>
     <button class="btn" ontouchstart="keys['ArrowRight']=true" ontouchend="keys['ArrowRight']=false">➡️</button>
   </div>
-
-  <a href="index.html"><button class="cta-button">Akhiri Game</button></a>
 
   <!-- AUDIO -->
   <audio id="shootSound" src="assets/audio/shoot.wav"></audio>
