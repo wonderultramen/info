@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shooter Auto Fire Mobile</title>
+  <title>Shooter Swipe Control</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -27,6 +27,7 @@
       height: 150vw;
       max-height: 100vh;
       background: black;
+      touch-action: none;
     }
 
     #popup {
@@ -61,31 +62,6 @@
       cursor: pointer;
     }
 
-    #touchControls {
-      position: fixed;
-      bottom: 10px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      z-index: 6;
-    }
-
-    .btn {
-      background: #00f2ff;
-      color: black;
-      font-weight: bold;
-      padding: 12px;
-      font-size: 20px;
-      border: none;
-      border-radius: 10px;
-      flex: 1;
-    }
-
-    .btn:active {
-      background: #00cfff;
-    }
-
     .cta-button {
       background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
       color: white;
@@ -111,7 +87,7 @@
 </head>
 <body>
   <div class="game-wrapper">
-    <h2>🚀 Shooter Auto + Mobile</h2>
+    <h2>🚀 Shooter Swipe Control</h2>
     <div>Level: <span id="level">1</span> | Skor: <span id="score">0</span></div>
     <canvas id="gameCanvas" width="400" height="600"></canvas>
 
@@ -125,11 +101,6 @@
       <p>Skor: <span id="popupScore">0</span></p>
       <button onclick="nextLevel()">➡️ Lanjutkan</button>
     </div>
-  </div>
-
-  <div id="touchControls">
-    <button class="btn" ontouchstart="keys['ArrowLeft']=true" ontouchend="keys['ArrowLeft']=false">⬅️</button>
-    <button class="btn" ontouchstart="keys['ArrowRight']=true" ontouchend="keys['ArrowRight']=false">➡️</button>
   </div>
 
   <!-- AUDIO -->
@@ -163,6 +134,7 @@
     let player, bullets = [], enemyBullets = [], enemies = [], boss = null;
     let keys = {}, level = 1, score = 0, bossHP = 0, pause = false, gameOver = false;
     let autoFireInterval;
+    let touchStartX = 0, touchStartY = 0;
 
     function startGame() {
       level = 1;
@@ -296,8 +268,10 @@
     function update() {
       if (gameOver || pause) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (keys["ArrowLeft"] && player.x > 0) player.x -= 4;
-      if (keys["ArrowRight"] && player.x < 360) player.x += 4;
+      if (keys["left"] && player.x > 0) player.x -= 4;
+      if (keys["right"] && player.x < canvas.width - player.w) player.x += 4;
+      if (keys["up"] && player.y > 0) player.y -= 4;
+      if (keys["down"] && player.y < canvas.height - player.h) player.y += 4;
       drawPlayer();
       drawEnemies();
       drawBoss();
@@ -326,11 +300,42 @@
       autoFireInterval = setInterval(() => shoot(), 400);
     }
 
-    document.addEventListener("keydown", (e) => {
-      keys[e.key] = true;
+    // Touch gesture (swipe)
+    canvas.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
     });
 
-    document.addEventListener("keyup", (e) => keys[e.key] = false);
+    canvas.addEventListener("touchmove", (e) => {
+      const deltaX = e.touches[0].clientX - touchStartX;
+      const deltaY = e.touches[0].clientY - touchStartY;
+      keys["left"] = deltaX < -10;
+      keys["right"] = deltaX > 10;
+      keys["up"] = deltaY < -10;
+      keys["down"] = deltaY > 10;
+    });
+
+    canvas.addEventListener("touchend", () => {
+      keys["left"] = false;
+      keys["right"] = false;
+      keys["up"] = false;
+      keys["down"] = false;
+    });
+
+    // Keyboard control
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") keys["left"] = true;
+      if (e.key === "ArrowRight") keys["right"] = true;
+      if (e.key === "ArrowUp") keys["up"] = true;
+      if (e.key === "ArrowDown") keys["down"] = true;
+    });
+
+    document.addEventListener("keyup", (e) => {
+      if (e.key === "ArrowLeft") keys["left"] = false;
+      if (e.key === "ArrowRight") keys["right"] = false;
+      if (e.key === "ArrowUp") keys["up"] = false;
+      if (e.key === "ArrowDown") keys["down"] = false;
+    });
   </script>
 </body>
 </html>
