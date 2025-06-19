@@ -2,231 +2,335 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galeri Game - Wonder Ultramen</title>
-  <link rel="icon" href="assets/images/logo.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesawat Wonder Ultra</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(-45deg, #6a11cb, #2575fc, #00c9ff, #92fe9d);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      background: black;
+      font-family: sans-serif;
       color: white;
-      overflow-x: hidden;
+      overflow: hidden;
       text-align: center;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .game-wrapper {
+      max-width: 400px;
+      margin: 0 auto;
+      position: relative;
+      padding-top: 10px;
     }
 
-    #preloader {
+    #bgCanvas, #gameCanvas {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #gameCanvas {
+      z-index: 2;
+      border: 3px solid #00f2ff;
+    }
+
+    #startBtn, #popup, #touchControls, h2, div {
+      position: relative;
+      z-index: 3;
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      background: #00f2ff;
+      border: none;
+      cursor: pointer;
+    }
+
+    #popup {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111;
+      border: 2px solid #00f2ff;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    #touchControls {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
+      gap: 10px;
     }
 
-    .preloader-logo {
-      width: 100px;
-      animation: rotateGlow 2s linear infinite;
-    }
-
-    .loading-text {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: #00f2ff;
+    .btn {
+      background: #00f2ff;
+      color: #000;
       font-weight: bold;
-      animation: pulseText 1.5s infinite ease-in-out;
-    }
-
-    @keyframes rotateGlow {
-      0% { transform: rotate(0deg); filter: drop-shadow(0 0 5px #00f2ff); }
-      100% { transform: rotate(360deg); filter: drop-shadow(0 0 20px #00f2ff); }
-    }
-
-    @keyframes pulseText {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin: 2rem 1rem 1rem;
-    }
-
-    .logo {
-      margin-top: 1rem;
-      width: 90px;
-    }
-
-    .game-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      padding: 2rem 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .game-item {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 0 12px rgba(0, 242, 255, 0.4);
-      transition: transform 0.3s ease;
-    }
-
-    .game-item:hover {
-      transform: scale(1.02);
-    }
-
-    .game-item iframe {
-      width: 100%;
-      height: 240px;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 18px;
+      min-width: 60px;
       border: none;
-      border-radius: 10px;
     }
 
-    .game-item p {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    .cta-button {
-      margin: 2rem auto;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .cta-button:hover {
-      opacity: 0.9;
-    }
-
-    #starCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+    .btn:active {
+      background: #00cfff;
     }
   </style>
 </head>
 <body>
+  <div class="game-wrapper">
+    <h2>🚀 Pesawat Wonder Ultra V.1</h2>
+    <div>Level: <span id="level">1</span> | Skor: <span id="score">0</span></div>
 
-<div id="preloader">
-  <div class="preloader-content">
-    <img src="assets/images/logo.png" alt="Loading..." class="preloader-logo" />
-    <div class="loading-text">Loading...</div>
+    <canvas id="bgCanvas" width="400" height="600"></canvas>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+    <button id="startBtn" onclick="startGame()">Mulai Game</button>
+
+    <div id="popup">
+      <h3>🎉 Level <span id="popupLevel">1</span> Selesai!</h3>
+      <p>Skor: <span id="popupScore">0</span></p>
+      <button onclick="nextLevel()">➡️ Lanjutkan</button>
+    </div>
   </div>
-</div>
 
-<canvas id="starCanvas"></canvas>
-
-<img src="assets/images/logo.png" alt="Logo Wonder Ultramen" class="logo" />
-<h1>Galeri Game Wonder Ultramen</h1>
-
-<div class="game-gallery">
-  <div class="game-item">
-    <iframe src="https://spritted.com/en/game/mahjong-firefly?embed" allowfullscreen></iframe>
-    <p>Mahjong Firefly</p>
+  <div id="touchControls">
+    <button class="btn" ontouchstart="keys['ArrowLeft']=true" ontouchend="keys['ArrowLeft']=false">⬅️</button>
+    <button class="btn" ontouchstart="shoot()">🔫</button>
+    <button class="btn" ontouchstart="keys['ArrowRight']=true" ontouchend="keys['ArrowRight']=false">➡️</button>
   </div>
-  <div class="game-item">
-    <iframe src="https://spritted.com/en/game/dominoes?embed" allowfullscreen></iframe>
-    <p>Dominoes</p>
-  </div>
-  <div class="game-item">
-    <iframe src="https://spritted.com/en/game/governor-of-poker-3?embed" allowfullscreen></iframe>
-    <p>Governor of Poker 3</p>
-  </div>
-  <div class="game-item">
-    <iframe src="https://spritted.com/en/game/back-to-candyland-5-choco-mountain?embed" allowfullscreen></iframe>
-    <p>Candyland 5: Choco Mountain</p>
-  </div>
-  <div class="game-item">
-    <iframe src="https://spritted.com/en/game/contra?embed" allowfullscreen></iframe>
-    <p>Contra</p>
-  </div>
-  <div class="game-item">
-    <iframe src="https://spritted.com/en/game/mario-kart-64?embed" allowfullscreen></iframe>
-    <p>Mario Kart 64</p>
-  </div>
-</div>
 
-<a href="index.html"><button class="cta-button">Kembali ke Beranda</button></a>
+  <!-- AUDIO -->
+  <audio id="shootSound" src="assets/audio/shoot.wav"></audio>
+  <audio id="explodeSound" src="assets/audio/explode.wav"></audio>
+  <audio id="gameoverSound" src="assets/audio/gameover.wav"></audio>
+  <audio id="bgMusic" src="assets/audio/bg-music.mp3" loop autoplay></audio>
 
-<!-- Bintang jatuh -->
-<script>
-  const canvas = document.getElementById('starCanvas');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  for (let i = 0; i < 100; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
+  <script>
+    const bgCanvas = document.getElementById('bgCanvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    const stars = Array.from({length: 100}, () => ({
+      x: Math.random() * bgCanvas.width,
+      y: Math.random() * bgCanvas.height,
       radius: Math.random() * 1.5,
       speed: Math.random() * 0.5 + 0.2
-    });
-  }
+    }));
 
-  function animateStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'white';
-    for (let star of stars) {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
-      ctx.fill();
-      star.y += star.speed;
-      if (star.y > canvas.height) {
-        star.y = 0;
-        star.x = Math.random() * canvas.width;
+    function animateStars() {
+      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+      bgCtx.fillStyle = 'white';
+      stars.forEach(star => {
+        bgCtx.beginPath();
+        bgCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        bgCtx.fill();
+        star.y += star.speed;
+        if (star.y > bgCanvas.height) {
+          star.y = 0;
+          star.x = Math.random() * bgCanvas.width;
+        }
+      });
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const playerImg = new Image();
+    playerImg.src = "assets/images/ship.png";
+
+    const enemyImg = new Image();
+    enemyImg.src = "assets/images/enemy.png";
+
+    const bossImgs = [];
+    for (let i = 1; i <= 15; i++) {
+      const img = new Image();
+      img.src = `assets/images/boss${i}.png`;
+      bossImgs.push(img);
+    }
+
+    const shootSound = document.getElementById("shootSound");
+    const explodeSound = document.getElementById("explodeSound");
+    const gameoverSound = document.getElementById("gameoverSound");
+    const bgMusic = document.getElementById("bgMusic");
+
+    let player, bullets = [], enemyBullets = [], enemies = [], boss = null;
+    let keys = {}, level = 1, score = 0, bossHP = 0, pause = false, gameOver = false;
+
+    function startGame() {
+      level = 1;
+      score = 0;
+      gameOver = false;
+      pause = false;
+      init();
+      spawnEnemies();
+      update();
+      document.getElementById("startBtn").style.display = "none";
+      bgMusic.volume = 0.5;
+      bgMusic.play();
+    }
+
+    function init() {
+      player = { x: 180, y: 520, w: 40, h: 40 };
+      bullets = [];
+      enemyBullets = [];
+      enemies = [];
+      boss = null;
+    }
+
+    function spawnEnemies() {
+      for (let i = 0; i < 4 + level; i++) {
+        enemies.push({ x: Math.random() * 360, y: Math.random() * -300, w: 30, h: 30 });
       }
     }
-    requestAnimationFrame(animateStars);
-  }
 
-  animateStars();
-</script>
+    function spawnBoss() {
+      boss = {
+        x: 100,
+        y: -80,
+        w: 200,
+        h: 80,
+        speed: 1.2,
+        img: bossImgs[(level - 1) % bossImgs.length]
+      };
+      bossHP = 20 + level * 5;
+    }
 
-<script>
-  window.addEventListener("load", function () {
-    const preloader = document.getElementById("preloader");
-    preloader.style.opacity = "0";
-    setTimeout(() => {
-      preloader.style.display = "none";
-    }, 600);
-  });
-</script>
+    function drawPlayer() {
+      ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
+    }
 
+    function drawEnemies() {
+      enemies.forEach((e, i) => {
+        e.y += 1;
+        ctx.drawImage(enemyImg, e.x, e.y, e.w, e.h);
+        if (Math.random() < 0.005) fireEnemyBullet(e.x + e.w / 2, e.y + e.h);
+        if (e.y > canvas.height) enemies.splice(i, 1);
+      });
+    }
+
+    function drawBoss() {
+      if (boss) {
+        if (boss.y < 30) boss.y += boss.speed;
+        ctx.drawImage(boss.img, boss.x, boss.y, boss.w, boss.h);
+        ctx.fillStyle = "white";
+        ctx.fillText("BOS HP: " + bossHP, boss.x + 40, boss.y + boss.h + 12);
+        if (Math.random() < 0.01) fireEnemyBullet(boss.x + boss.w / 2, boss.y + boss.h);
+      }
+    }
+
+    function drawBullets() {
+      ctx.fillStyle = "yellow";
+      bullets.forEach((b, i) => {
+        b.y -= 5;
+        ctx.fillRect(b.x, b.y, 4, 10);
+        if (b.y < 0) bullets.splice(i, 1);
+      });
+
+      ctx.fillStyle = "red";
+      enemyBullets.forEach((b, i) => {
+        b.y += b.speedY;
+        b.x += b.speedX;
+        ctx.fillRect(b.x, b.y, 4, 10);
+        if (b.y > canvas.height || b.x < 0 || b.x > canvas.width) enemyBullets.splice(i, 1);
+
+        if (b.x < player.x + player.w && b.x + 4 > player.x &&
+            b.y < player.y + player.h && b.y + 10 > player.y) {
+          gameoverSound.play();
+          alert("💥 Kamu Kena! Game Over.\nSkor: " + score);
+          gameOver = true;
+          document.getElementById("startBtn").style.display = "inline-block";
+        }
+      });
+    }
+
+    function fireEnemyBullet(x, y) {
+      const dx = player.x + player.w/2 - x;
+      const dy = player.y - y;
+      const len = Math.sqrt(dx * dx + dy * dy);
+      enemyBullets.push({
+        x, y,
+        speedX: dx / len * 2,
+        speedY: dy / len * 2
+      });
+    }
+
+    function checkHits() {
+      bullets.forEach((b, bi) => {
+        enemies.forEach((e, ei) => {
+          if (b.x < e.x + e.w && b.x + 4 > e.x && b.y < e.y + e.h && b.y + 10 > e.y) {
+            bullets.splice(bi, 1);
+            enemies.splice(ei, 1);
+            explodeSound.play();
+            score += 10;
+            document.getElementById("score").textContent = score;
+          }
+        });
+
+        if (boss && b.x < boss.x + boss.w && b.x + 4 > boss.x &&
+            b.y < boss.y + boss.h && b.y + 10 > boss.y) {
+          bullets.splice(bi, 1);
+          bossHP--;
+          if (bossHP <= 0) {
+            explodeSound.play();
+            boss = null;
+            pause = true;
+            document.getElementById("popupLevel").textContent = level;
+            document.getElementById("popupScore").textContent = score;
+            document.getElementById("popup").style.display = "block";
+          }
+        }
+      });
+    }
+
+    function update() {
+      if (gameOver || pause) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (keys["ArrowLeft"] && player.x > 0) player.x -= 4;
+      if (keys["ArrowRight"] && player.x < 360) player.x += 4;
+      drawPlayer();
+      drawEnemies();
+      drawBoss();
+      drawBullets();
+      checkHits();
+      if (enemies.length === 0 && !boss) spawnBoss();
+      requestAnimationFrame(update);
+    }
+
+    function shoot() {
+      if (!gameOver && !pause) {
+        bullets.push({ x: player.x + player.w / 2 - 2, y: player.y });
+        shootSound.currentTime = 0;
+        shootSound.play();
+      }
+    }
+
+    function nextLevel() {
+      level++;
+      document.getElementById("level").textContent = level;
+      pause = false;
+      document.getElementById("popup").style.display = "none";
+      init();
+      spawnEnemies();
+      update();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      keys[e.key] = true;
+      if (e.key === " ") shoot();
+    });
+
+    document.addEventListener("keyup", (e) => keys[e.key] = false);
+  </script>
 </body>
 </html>
