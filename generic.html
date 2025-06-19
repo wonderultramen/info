@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -301,6 +302,8 @@
   </tbody>
 </table>
 
+<h2>Diagram Jumlah Anggota per Provinsi</h2>
+<div id="provinsiChart" style="width: 90%; max-width: 800px; margin: 2rem auto; text-align: left;"></div>
 
     <a href="index.html"><button class="cta-button">Kembali ke Beranda</button></a>
   </div>
@@ -340,6 +343,54 @@
     }
     animateStars();
   </script>
+  <script>
+  // Ambil semua alamat dari kolom ke-4 tabel
+  const alamatCells = document.querySelectorAll("table tbody tr td:nth-child(4)");
+
+  // Objek untuk menyimpan jumlah anggota per provinsi
+  const provinsiCounts = {};
+
+  alamatCells.forEach(cell => {
+    let alamat = cell.textContent.trim();
+    let parts = alamat.split(" - ");
+    if (parts.length > 1) {
+      let prov = parts[1].trim().toUpperCase(); // Ambil bagian provinsi
+      if (prov) {
+        provinsiCounts[prov] = (provinsiCounts[prov] || 0) + 1;
+      }
+    }
+  });
+
+  // Render manual batang horizontal
+  const chartContainer = document.getElementById("provinsiChart");
+  const maxValue = Math.max(...Object.values(provinsiCounts));
+  const colors = ["#ff7675", "#74b9ff", "#ffeaa7", "#55efc4", "#a29bfe", "#fab1a0", "#00cec9", "#fd79a8", "#e17055"];
+
+  let index = 0;
+  for (const [prov, count] of Object.entries(provinsiCounts)) {
+    const barWrapper = document.createElement("div");
+    barWrapper.style.marginBottom = "10px";
+
+    const label = document.createElement("div");
+    label.textContent = `${prov} (${count})`;
+    label.style.fontWeight = "bold";
+    label.style.marginBottom = "4px";
+
+    const bar = document.createElement("div");
+    bar.style.height = "24px";
+    bar.style.width = `${(count / maxValue) * 100}%`;
+    bar.style.backgroundColor = colors[index % colors.length];
+    bar.style.borderRadius = "4px";
+    bar.style.transition = "width 0.5s ease";
+
+    barWrapper.appendChild(label);
+    barWrapper.appendChild(bar);
+    chartContainer.appendChild(barWrapper);
+
+    index++;
+  }
+</script>
+
 <section>
 <p>&copy; 2025 | Wonder Ultramen Mahasiswa Community | Semua hak cipta dilindungi.
 						</section>
