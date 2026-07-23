@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wonder Ultramen Mahasiswa Community</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -129,14 +129,14 @@
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-utama z-10"></div>
             <!-- UBAH BAGIAN INI: tambah object-center agar bagian tengah gambar yang selalu tampil -->
-            <img src="sampul1.png" alt="Sampul Wonder Ultramen" class="w-full h-full object-cover object-center">
+            <img src="sampul.png" alt="Sampul Wonder Ultramen" class="w-full h-full object-cover object-center">
         </div>
         <div class="container mx-auto px-4 z-10 text-center">
-            <h2 class="text-[clamp(2.5rem,10vw,4.5rem)] font-black mb-3 leading-tight gradasi-teks teks-bersinar"></h2>
-            <p class="text-[clamp(1rem,4vw,1.6rem)] font-semibold gradasi-perak mb-10 tracking-widest"></p>
+            <h2 class="text-[clamp(2.5rem,10vw,4.5rem)] font-black mb-3 leading-tight gradasi-teks teks-bersinar">WONDER ULTRAMEN</h2>
+            <p class="text-[clamp(1rem,4vw,1.6rem)] font-semibold gradasi-perak mb-10 tracking-widest">MAHASISWA COMMUNITY</p>
             <div class="mt-8">
                 <a href="#daftar" class="inline-block bg-aksen hover:bg-[#FFD700] text-utama px-10 py-3 rounded-full font-bold shadow-lg shadow-aksen/30 transition-all duration-300 hover:scale-105">
-                    DAFTAR ANGGOTA
+                    DAFTAR SEKARANG
                 </a>
             </div>
         </div>
@@ -582,13 +582,20 @@
         <img id="gambarBesar" class="lightbox-img" src="" alt="Gambar Besar">
     </div>
 
-    <!-- Footer -->
+     <!-- Footer -->
     <footer class="bg-black border-t border-aksen/30 py-10">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-xl font-black gradasi-teks mb-2">WONDER ULTRAMEN</p>
-            <p class="text-perak">© 2026 | Wonder Ultramen Mahasiswa Community | Semua hak cipta dilindungi.</p>
+    <div class="container mx-auto px-4 text-center">
+        <p class="text-perak text-sm mb-4">© 2026 | Wonder Ultramen Mahasiswa Community | Semua hak cipta dilindungi.</p>
+        <p class="text-xl font-bold text-aksen mb-5">Hubungi kami di sini:</p>
+        <div class="flex justify-center gap-x-5 gap-y-3 text-2xl text-perak">
+            <a href="https://www.youtube.com/@wonderultramen" class="hover:text-aksen hover:scale-110 transition-all duration-300" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@wonder_ultramen" class="hover:text-aksen hover:scale-110 transition-all duration-300" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://x.com/wonderultramen" class="hover:text-aksen hover:scale-110 transition-all duration-300" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/wonderultramen" class="hover:text-aksen hover:scale-110 transition-all duration-300" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/people/Wonder-Ultramen-Community/61576940013781/" class="hover:text-aksen hover:scale-110 transition-all duration-300" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <script>
         // Fungsi Lightbox
