@@ -1,324 +1,621 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wonder Ultramen Mahasiswa Community</title>
-  <link rel="icon" href="assets/images/logo.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
-    }
-
-    .preloader-content {
-      text-align: center;
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .preloader-logo {
-      width: 100px;
-      height: 100px;
-      animation: rotateGlow 2s linear infinite;
-    }
-
-    .loading-text {
-      margin-top: 15px;
-      font-size: 1.2rem;
-      color: #00f2ff;
-      text-shadow: 0 0 5px #00f2ff, 0 0 10px #00f2ff, 0 0 15px #00f2ff;
-      font-weight: bold;
-      animation: pulseText 1.5s infinite ease-in-out;
-    }
-
-    @keyframes rotateGlow {
-      0% { transform: rotate(0deg); filter: drop-shadow(0 0 5px #00f2ff); }
-      100% { transform: rotate(360deg); filter: drop-shadow(0 0 20px #00f2ff); }
-    }
-
-    @keyframes pulseText {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      color: white;
-      text-align: center;
-      background: linear-gradient(-45deg, #6a11cb, #2575fc, #00c9ff, #92fe9d);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-    }
-
-    .wrapper {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .logo {
-      width: 100px;
-      margin-bottom: 1rem;
-    }
-
-    h1, h3 {
-      margin: 0.5rem 0;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-      margin: 2rem auto;
-      width: 100%;
-      max-width: 600px;
-    }
-
-    .menu-btn {
-      width: 100%;
-      height: auto;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .menu-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .social-icons {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      padding: 0;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-
-    .social-icons li a {
-      font-size: 28px;
-      color: white;
-      text-decoration: none;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    .social-icons li a:hover {
-      transform: scale(1.2);
-      color: #00f2ff;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonder Ultramen Mahasiswa Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        utama: '#050505',
+                        aksen: '#FFB800',
+                        perak: '#C5C5C5',
+                        sekunder: '#888888',
+                        api: '#FF4500',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .bayangan {
+                box-shadow: 0 8px 25px rgba(255, 184, 0, 0.15);
+            }
+            .teks-bersinar {
+                text-shadow: 0 0 8px rgba(255, 184, 0, 0.6), 0 2px 4px rgba(0,0,0,0.8);
+            }
+            .naik {
+                transition: all 0.3s ease;
+            }
+            .naik:hover {
+                transform: translateY(-6px);
+            }
+            .gradasi-teks {
+                background: linear-gradient(180deg, #FFE88A 0%, #FFB800 50%, #D48F00 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .gradasi-perak {
+                background: linear-gradient(180deg, #FFFFFF 0%, #D0D0D0 45%, #909090 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .galeri-item {
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+            }
+            .galeri-item:hover {
+                transform: scale(1.05);
+            }
+            .lightbox {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.95);
+                z-index: 9999;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+            }
+            .lightbox.aktif {
+                display: flex;
+            }
+            .lightbox-img {
+                max-width: 90%;
+                max-height: 85vh;
+                border-radius: 8px;
+                box-shadow: 0 0 30px rgba(255,184,0,0.4);
+            }
+            .lightbox-tutup {
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                color: #FFB800;
+                font-size: 2.5rem;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+            .lightbox-tutup:hover {
+                transform: rotate(90deg);
+            }
+            .menu-link {
+                transition: all 0.2s ease;
+                border-bottom: 2px solid transparent;
+            }
+            .menu-link:hover {
+                color: #FFB800;
+                border-bottom-color: #FFB800;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-utama text-perak font-sans">
 
-<div id="preloader">
-  <div class="preloader-content">
-    <img src="assets/images/logo.png" alt="Loading..." class="preloader-logo" />
-    <p class="loading-text">Loading...</p>
-  </div>
-</div>
+    <!-- Bagian Logo & Menu -->
+    <div class="bg-black/80 backdrop-blur-md py-3 shadow-md sticky top-0 z-50 border-b border-aksen/30">
+        <div class="container mx-auto px-4">
+            <!-- Logo -->
+            <div class="flex justify-center items-center mb-3">
+                <img src="logo.png" alt="Logo Wonder Ultramen" class="h-20 w-auto">
+            </div>
+            <!-- Menu Navigasi Sejajar -->
+            <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm md:text-base font-medium">
+                <a href="#tentang" class="menu-link px-2 py-1">TENTANG</a>
+                <a href="#galeri" class="menu-link px-2 py-1">GALERI</a>
+                <a href="#anggota" class="menu-link px-2 py-1">ANGGOTA</a>
+                <a href="#jadwal" class="menu-link px-2 py-1">JADWAL</a>
+                <a href="#berita" class="menu-link px-2 py-1">BERITA</a>
+            </nav>
+        </div>
+    </div>
 
-<canvas id="starCanvas"></canvas>
-<canvas id="birdCanvas"></canvas>
+    <!-- Bagian Sampul / Hero Section -->
+    <header class="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-utama z-10"></div>
+            <img src="sampul.png" alt="Sampul Wonder Ultramen" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 z-10 text-center">
+            <h2 class="text-[clamp(2.8rem,8vw,5rem)] font-black mb-2 leading-tight gradasi-teks teks-bersinar">WONDER ULTRAMEN</h2>
+            <p class="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold gradasi-perak mb-8 tracking-widest">MAHASISWA COMMUNITY</p>
+            <div class="mt-8">
+                <a href="#daftar" class="inline-block bg-aksen hover:bg-[#FFD700] text-utama px-10 py-3 rounded-full font-bold shadow-lg shadow-aksen/30 transition-all duration-300 hover:scale-105">
+                    DAFTAR SEKARANG
+                </a>
+            </div>
+        </div>
+    </header>
 
-<audio id="bgAudio" loop>
-  <source src="assets/audio/background.mp3" type="audio/mpeg">
-  Browser Anda tidak mendukung audio.
-</audio>
+    <main class="container mx-auto px-4 py-16">
 
-<script>
-  window.addEventListener("click", function playAudioOnce() {
-    const audio = document.getElementById("bgAudio");
-    audio.play().catch(err => console.log("Autoplay ditolak:", err));
-    window.removeEventListener("click", playAudioOnce);
-  });
-</script>
+        <!-- Bagian Tentang -->
+        <section id="tentang" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black gradasi-teks mb-3">TENTANG KAMI</h2>
+                <div class="w-24 h-1 bg-aksen mx-auto rounded-full"></div>
+            </div>
+            <div class="max-w-3xl mx-auto text-center leading-relaxed">
+                <p class="mb-4">Wonder Ultramen adalah komunitas mahasiswa yang bergerak dalam bidang sosial, kebersamaan, dan pengembangan potensi diri. Kami berkumpul untuk saling mendukung, berbagi kebaikan, dan melaksanakan kegiatan yang bermanfaat bagi sesama.</p>
+                <p class="text-perak/80">Dibentuk oleh mahasiswa dari berbagai daerah di Indonesia, komunitas ini menjunjung tinggi persaudaraan, kepedulian, dan semangat kebersamaan tanpa batas.</p>
+            </div>
+        </section>
 
-<div class="wrapper">
-  <img src="assets/images/logo.png" alt="Logo Wonder Ultramen" class="logo" />
-  <h1>Wonder Ultramen</h1>
-  <h3>Mahasiswa Community</h3>
+        <!-- Bagian Galeri -->
+        <section id="galeri" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black gradasi-teks mb-3">GALERI KEGIATAN</h2>
+                <div class="w-24 h-1 bg-aksen mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+                <img src="kegiatan1.jpg" alt="Kegiatan 1" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan2.jpg" alt="Kegiatan 2" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan3.jpg" alt="Kegiatan 3" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan4.jpg" alt="Kegiatan 4" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan5.jpg" alt="Kegiatan 5" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan6.jpg" alt="Kegiatan 6" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan7.jpg" alt="Kegiatan 7" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan8.jpg" alt="Kegiatan 8" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan9.jpg" alt="Kegiatan 9" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan10.jpg" alt="Kegiatan 10" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan11.jpg" alt="Kegiatan 11" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan12.jpg" alt="Kegiatan 12" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan13.jpg" alt="Kegiatan 13" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan14.jpg" alt="Kegiatan 14" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan15.jpg" alt="Kegiatan 15" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan16.jpg" alt="Kegiatan 16" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan17.jpg" alt="Kegiatan 17" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan18.jpg" alt="Kegiatan 18" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan19.jpg" alt="Kegiatan 19" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan20.jpg" alt="Kegiatan 20" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan21.jpg" alt="Kegiatan 21" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan22.jpg" alt="Kegiatan 22" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan23.jpg" alt="Kegiatan 23" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan24.jpg" alt="Kegiatan 24" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan25.jpg" alt="Kegiatan 25" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan26.jpg" alt="Kegiatan 26" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan27.jpg" alt="Kegiatan 27" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan28.jpg" alt="Kegiatan 28" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan29.jpg" alt="Kegiatan 29" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan30.jpg" alt="Kegiatan 30" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan31.jpg" alt="Kegiatan 31" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan32.jpg" alt="Kegiatan 32" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan33.jpg" alt="Kegiatan 33" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan34.jpg" alt="Kegiatan 34" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan35.jpg" alt="Kegiatan 35" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+                <img src="kegiatan36.jpg" alt="Kegiatan 36" class="galeri-item bg-black/40 border border-aksen/20 rounded-xl bayangan p-1" onclick="bukaGambar(this.src)">
+            </div>
+        </section>
 
-  <div class="buttons">
-    <a href="generic.html"><img src="assets/images/tentang.png" alt="Tentang" class="menu-btn" title="Tentang"></a>
-    <a href="gallery.html"><img src="assets/images/gallery.png" alt="Gallery" class="menu-btn" title="Gallery"></a>
-    <a href="elements.html"><img src="assets/images/pendaftaran.png" alt="Register" class="menu-btn" title="Register"></a>
-    <a href="berita.html"><img src="assets/images/berita.png" alt="Berita" class="menu-btn" title="Berita"></a>
-    <a href="jadwal.html"><img src="assets/images/jadwal.png" alt="Jadwal" class="menu-btn" title="Jadwal"></a>
-    <a href="info.html"><img src="assets/images/info.png" alt="Informasi" class="menu-btn" title="Informasi"></a>
-    <a href="games.html"><img src="assets/images/games.png" alt="Game" class="menu-btn" title="Game"></a>
-  </div>
-</div>
+        <!-- Bagian Daftar Anggota -->
+        <section id="anggota" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black gradasi-teks mb-3">ANGGOTA WONDER ULTRAMEN</h2>
+                <div class="w-24 h-1 bg-aksen mx-auto rounded-full"></div>
+            </div>
+            <div class="overflow-x-auto bg-black/40 border border-aksen/20 rounded-xl bayangan">
+                <table class="w-full">
+                    <thead class="bg-aksen/10 border-b border-aksen/30">
+                        <tr>
+                            <th class="py-4 px-4 text-center text-aksen font-bold">No</th>
+                            <th class="py-4 px-4 text-left text-aksen font-bold">Nama Lengkap</th>
+                            <th class="py-4 px-4 text-center text-aksen font-bold">Nomor Anggota</th>
+                            <th class="py-4 px-4 text-left text-aksen font-bold">Alamat</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-aksen/10">
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">1</td>
+                            <td class="py-3 px-4">Fauzan Nur H</td>
+                            <td class="py-3 px-4 text-center">22339865006</td>
+                            <td class="py-3 px-4">Kab. Tegal - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">2</td>
+                            <td class="py-3 px-4">M. Miftahussurur</td>
+                            <td class="py-3 px-4 text-center">22339865007</td>
+                            <td class="py-3 px-4">Kab. Demak - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">3</td>
+                            <td class="py-3 px-4">M. Abdul Aziz S.Pd</td>
+                            <td class="py-3 px-4 text-center">22339865008</td>
+                            <td class="py-3 px-4">Kota Tasikmalaya - Jabar</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">4</td>
+                            <td class="py-3 px-4">Beplani</td>
+                            <td class="py-3 px-4 text-center">22339865011</td>
+                            <td class="py-3 px-4">Kab. Pegunungan Bintang - Papua</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">5</td>
+                            <td class="py-3 px-4">Aulia Qurrutul A</td>
+                            <td class="py-3 px-4 text-center">22339865014</td>
+                            <td class="py-3 px-4">Kab. Kendal - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">6</td>
+                            <td class="py-3 px-4">Didi Handayani</td>
+                            <td class="py-3 px-4 text-center">22339865015</td>
+                            <td class="py-3 px-4">Kab. Cirebon - Jabar</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">7</td>
+                            <td class="py-3 px-4">Purnama Anugrah</td>
+                            <td class="py-3 px-4 text-center">22339865021</td>
+                            <td class="py-3 px-4">Kota Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">8</td>
+                            <td class="py-3 px-4">Nazarudin Ilyas</td>
+                            <td class="py-3 px-4 text-center">22339865022</td>
+                            <td class="py-3 px-4">Kab. Ende - NTT</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">9</td>
+                            <td class="py-3 px-4">Rizky</td>
+                            <td class="py-3 px-4 text-center">22339865023</td>
+                            <td class="py-3 px-4">Kab. Pacitan - Jatim</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">10</td>
+                            <td class="py-3 px-4">Jacky vallare</td>
+                            <td class="py-3 px-4 text-center">22339865024</td>
+                            <td class="py-3 px-4">Kab. Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">11</td>
+                            <td class="py-3 px-4">M. Ariyanto</td>
+                            <td class="py-3 px-4 text-center">22339865025</td>
+                            <td class="py-3 px-4">Kab. Magelang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">12</td>
+                            <td class="py-3 px-4">Maya Amelia Putri</td>
+                            <td class="py-3 px-4 text-center">22339865027</td>
+                            <td class="py-3 px-4">Kab. Bogor - Jabar</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">13</td>
+                            <td class="py-3 px-4">Ilham Dzikirom M A</td>
+                            <td class="py-3 px-4 text-center">22339865028</td>
+                            <td class="py-3 px-4">Kab. Kediri - Jatim</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">14</td>
+                            <td class="py-3 px-4">Memoris Dakhi</td>
+                            <td class="py-3 px-4 text-center">22339865029</td>
+                            <td class="py-3 px-4">Kab. Deli Serdang - SUMUT</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">15</td>
+                            <td class="py-3 px-4">R. Sultan N. S. W</td>
+                            <td class="py-3 px-4 text-center">22339865030</td>
+                            <td class="py-3 px-4">Kota Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">16</td>
+                            <td class="py-3 px-4">Ali Akbar Rahmat</td>
+                            <td class="py-3 px-4 text-center">22339865031</td>
+                            <td class="py-3 px-4">Kota Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">17</td>
+                            <td class="py-3 px-4">Fauzan Nur Hidayat</td>
+                            <td class="py-3 px-4 text-center">22339865032</td>
+                            <td class="py-3 px-4">Kab. Sragen - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">18</td>
+                            <td class="py-3 px-4">Tyas Maulana Pratama</td>
+                            <td class="py-3 px-4 text-center">22339865033</td>
+                            <td class="py-3 px-4">Kota Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">19</td>
+                            <td class="py-3 px-4">Wawah Sri Sunenti</td>
+                            <td class="py-3 px-4 text-center">22339865034</td>
+                            <td class="py-3 px-4">Kab. Tangerang - Banten</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">20</td>
+                            <td class="py-3 px-4">Rangga Surya Pratama</td>
+                            <td class="py-3 px-4 text-center">22339865035</td>
+                            <td class="py-3 px-4">Kota Pekanbaru - Riau</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">21</td>
+                            <td class="py-3 px-4">DIKI</td>
+                            <td class="py-3 px-4 text-center">22339865036</td>
+                            <td class="py-3 px-4">Kab. OKU Timur - SUMSEL</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">22</td>
+                            <td class="py-3 px-4">Arung Muh Bilal Alwi</td>
+                            <td class="py-3 px-4 text-center">22339865037</td>
+                            <td class="py-3 px-4">Kota Makasar - SULSEL</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">23</td>
+                            <td class="py-3 px-4">KHOIRUN ZAIDAN MUCHTAR</td>
+                            <td class="py-3 px-4 text-center">22339865038</td>
+                            <td class="py-3 px-4">Kab. Batang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">24</td>
+                            <td class="py-3 px-4">Anggraita Ali Waskito</td>
+                            <td class="py-3 px-4 text-center">22339865039</td>
+                            <td class="py-3 px-4">Kab. Ponorogo - Jatim</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">25</td>
+                            <td class="py-3 px-4">Faysa Maharani</td>
+                            <td class="py-3 px-4 text-center">22339865040</td>
+                            <td class="py-3 px-4">Kota Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">26</td>
+                            <td class="py-3 px-4">Nuril Muslimin</td>
+                            <td class="py-3 px-4 text-center">22339865041</td>
+                            <td class="py-3 px-4">Kab. Bekasi - Jabar</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">27</td>
+                            <td class="py-3 px-4">Dany Pratama S</td>
+                            <td class="py-3 px-4 text-center">22339865042</td>
+                            <td class="py-3 px-4">Kota Karawang - Jabar</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">28</td>
+                            <td class="py-3 px-4">Rifki</td>
+                            <td class="py-3 px-4 text-center">22339865043</td>
+                            <td class="py-3 px-4">Kota Tegal - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">29</td>
+                            <td class="py-3 px-4">Nur Difa Ramadhani</td>
+                            <td class="py-3 px-4 text-center">22339865044</td>
+                            <td class="py-3 px-4">Kab. Kendal - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">30</td>
+                            <td class="py-3 px-4">Herbert Baginisura</td>
+                            <td class="py-3 px-4 text-center">22339865045</td>
+                            <td class="py-3 px-4">Kota Malang - Jatim</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">31</td>
+                            <td class="py-3 px-4">Tesalonika</td>
+                            <td class="py-3 px-4 text-center">22339865046</td>
+                            <td class="py-3 px-4">Kab. Barito Selatan - Kalteng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">32</td>
+                            <td class="py-3 px-4">Muhammad Zidni Syukron</td>
+                            <td class="py-3 px-4 text-center">22339865047</td>
+                            <td class="py-3 px-4">Kab. Demak - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">33</td>
+                            <td class="py-3 px-4">Rafi Alvino Rizer</td>
+                            <td class="py-3 px-4 text-center">22339865048</td>
+                            <td class="py-3 px-4">Kota Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">34</td>
+                            <td class="py-3 px-4">SITI SHOLIHAH</td>
+                            <td class="py-3 px-4 text-center">22339865049</td>
+                            <td class="py-3 px-4">Kab. Pati - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">35</td>
+                            <td class="py-3 px-4">Dini Nuralfiah</td>
+                            <td class="py-3 px-4 text-center">22339865050</td>
+                            <td class="py-3 px-4">Kab. Kendal - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">36</td>
+                            <td class="py-3 px-4">Yusuf Ali Mahmudi</td>
+                            <td class="py-3 px-4 text-center">22339865051</td>
+                            <td class="py-3 px-4">Kab. Pati - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">37</td>
+                            <td class="py-3 px-4">Alfarizal Silayar</td>
+                            <td class="py-3 px-4 text-center">22339865052</td>
+                            <td class="py-3 px-4">Kab. Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">38</td>
+                            <td class="py-3 px-4">RIZAL BAHRI PALAGUNA</td>
+                            <td class="py-3 px-4 text-center">22339865053</td>
+                            <td class="py-3 px-4">Kab. Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">39</td>
+                            <td class="py-3 px-4">Firman Haer Ramadan</td>
+                            <td class="py-3 px-4 text-center">22339865054</td>
+                            <td class="py-3 px-4">Kota Karawang - Jabar</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">40</td>
+                            <td class="py-3 px-4">Andik W</td>
+                            <td class="py-3 px-4 text-center">22339865010</td>
+                            <td class="py-3 px-4">Kab. Kendal - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">41</td>
+                            <td class="py-3 px-4">Ulil Mursalin</td>
+                            <td class="py-3 px-4 text-center">22339865055</td>
+                            <td class="py-3 px-4">Kab. Cilacap - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">42</td>
+                            <td class="py-3 px-4">Arim Dica Mahendra</td>
+                            <td class="py-3 px-4 text-center">22339865056</td>
+                            <td class="py-3 px-4">Kota Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">43</td>
+                            <td class="py-3 px-4">Putra Bhekti W</td>
+                            <td class="py-3 px-4 text-center">22339865057</td>
+                            <td class="py-3 px-4">Kab. Gresik - Jatim</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">44</td>
+                            <td class="py-3 px-4">Alfandi Riza Setiadi</td>
+                            <td class="py-3 px-4 text-center">22339865058</td>
+                            <td class="py-3 px-4">Kota Semarang - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">45</td>
+                            <td class="py-3 px-4">Wahyu Supriyadi</td>
+                            <td class="py-3 px-4 text-center">22339865059</td>
+                            <td class="py-3 px-4">Kab. Demak - Jateng</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">46</td>
+                            <td class="py-3 px-4">SyamBanua</td>
+                            <td class="py-3 px-4 text-center">22339865060</td>
+                            <td class="py-3 px-4">Kota Banjarbaru - Kalsel</td>
+                        </tr>
+                        <tr class="hover:bg-aksen/5 transition-colors">
+                            <td class="py-3 px-4 text-center">47</td>
+                            <td class="py-3 px-4">Rofid Romzi A</td>
+                            <td class="py-3 px-4 text-center">22339865061</td>
+                            <td class="py-3 px-4">Pemalang - Jateng</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-<!-- Animasi Bintang -->
-<script>
-  const canvas = document.getElementById('starCanvas');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
+        <!-- Bagian Jadwal Kegiatan -->
+        <section id="jadwal" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black gradasi-teks mb-3">JADWAL KEGIATAN</h2>
+                <div class="w-24 h-1 bg-aksen mx-auto rounded-full"></div>
+            </div>
+            <div class="space-y-5">
+                <div class="bg-black/40 border border-aksen/20 p-6 rounded-xl bayangan naik border-l-4 border-aksen">
+                    <div class="text-aksen font-bold text-lg mb-1">5-6 September 2026</div>
+                    <div class="text-perak">Merbabu Camp Season 2 - Pukul 12.00 WIB kumpul di Basecamp Ungaran</div>
+                    <img src="merbabu2.png"
+                </div>
+            </div>
+        </section>
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+        <!-- Bagian Berita -->
+        <section id="berita" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black gradasi-teks mb-3">BERITA TERKINI</h2>
+                <div class="w-24 h-1 bg-aksen mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-black/40 border border-aksen/20 rounded-xl overflow-hidden bayangan naik">
+                    <div class="p-6">
+                        <span class="text-sm text-sekunder">19-20 April 2025</span>
+                        <h3 class="text-xl font-bold text-aksen mt-1 mb-3">Komunitas Wonder Ultramen Camp Sidomukti</h3>
+                        <p class="text-perak">Kegiatan ini diikuti oleh mahasiswa dari berbagai kota seperti Jakarta, Tuban, Solo, bahkan Balikpapan.</p>
+                        <p class="mt-2">Artikel lengkap dapat dibaca melalui Kompasiana:</p>
+                        <a href="https://www.kompasiana.com/gava50484/683ec59e34777c345e54f1f2/organisasi-mahasiswa-wonder-ultramen-kegiatan-camp-happy-di-sidomukti" target="_blank" class="text-aksen hover:text-white font-medium inline-flex items-center gap-1 mt-2">Baca selengkapnya →</a>
+                    </div>
+                </div>
+                <div class="bg-black/40 border border-aksen/20 rounded-xl overflow-hidden bayangan naik">
+                    <div class="p-6">
+                        <span class="text-sm text-sekunder">14 Desember 2025</span>
+                        <h3 class="text-xl font-bold text-aksen mt-1 mb-3">Peduli Bencana Sumatera, Wonder Ultramen Mahasiswa Community Serahkan Bantuan Kemanusiaan</h3>
+                        <p class="text-perak">Bantuan kemanusiaan yang bertajuk "Wonder Ultramen Peduli" tersebut diserahkan secara langsung oleh perwakilan Pengurus Wonder Ultramen di Panggung Donasi SURA ANDALAS, dalam rangkaian kegiatan Sumatra Relief Action Kabupaten Semarang Bersatu, Sumatera Bangkit.</p>
+                        <p class="mt-2">Artikel lengkap dapat dibaca melalui Kompasiana:</p>
+                        <a href="https://www.kompasiana.com/gava50484/693e8b09c925c40f3f05b7d4/peduli-bencana-sumatera-wonder-ultramen-community-mahasiswa-serahkan-bantuan-kemanusiaan" target="_blank" class="text-aksen hover:text-white font-medium inline-flex items-center gap-1 mt-2">Baca selengkapnya →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
+        <!-- Form Pendaftaran -->
+        <section id="daftar" class="mb-16">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-black gradasi-teks mb-3">DAFTAR MENJADI ANGGOTA</h2>
+                    <div class="w-24 h-1 bg-aksen mx-auto rounded-full"></div>
+                </div>
+                <div class="bg-black/40 border border-aksen/20 p-8 rounded-2xl bayangan">
+                    <form id="formPendaftaran">
+                        <div class="mb-5">
+                            <label for="nama" class="block mb-2 font-medium text-aksen">Nama Lengkap</label>
+                            <input type="text" id="nama" class="w-full px-4 py-3 bg-black/50 border border-aksen/40 rounded-lg text-perak focus:ring-2 focus:ring-aksen focus:border-aksen outline-none transition-all" placeholder="Masukkan nama lengkap anda" required>
+                        </div>
+                        <div class="mb-8">
+                            <label for="alamat" class="block mb-2 font-medium text-aksen">Alamat Lengkap</label>
+                            <input type="text" id="alamat" class="w-full px-4 py-3 bg-black/50 border border-aksen/40 rounded-lg text-perak focus:ring-2 focus:ring-aksen focus:border-aksen outline-none transition-all" placeholder="Masukkan alamat lengkap anda" required>
+                        </div>
+                        <button type="submit" class="w-full bg-aksen hover:bg-[#FFD700] text-utama py-3 px-6 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-aksen/30">
+                            <i class="fa fa-whatsapp"></i> KIRIM KE WHATSAPP
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-  for (let i = 0; i < 100; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 1.5,
-      speed: Math.random() * 0.5 + 0.2
-    });
-  }
+    </main>
 
-  function animateStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'white';
-    for (let star of stars) {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
-      ctx.fill();
-      star.y += star.speed;
-      if (star.y > canvas.height) {
-        star.y = 0;
-        star.x = Math.random() * canvas.width;
-      }
-    }
-    requestAnimationFrame(animateStars);
-  }
+    <!-- Lightbox -->
+    <div id="lightboxId" class="lightbox" onclick="tutupGambar()">
+        <span class="lightbox-tutup">&times;</span>
+        <img id="gambarBesar" class="lightbox-img" src="" alt="Gambar Besar">
+    </div>
 
-  animateStars();
-</script>
+    <!-- Footer -->
+    <footer class="bg-black border-t border-aksen/30 py-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-xl font-black gradasi-teks mb-2">WONDER ULTRAMEN</p>
+            <p class="text-perak">© 2025 | Wonder Ultramen Mahasiswa Community | Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
 
-<!-- Animasi Burung -->
-<script>
-  const birdCanvas = document.getElementById('birdCanvas');
-  const birdCtx = birdCanvas.getContext('2d');
-  let birds = [];
+    <script>
+        // Fungsi Lightbox
+        const kotakGambar = document.getElementById('lightboxId');
+        const gambarBesar = document.getElementById('gambarBesar');
+        function bukaGambar(sumber) {
+            kotakGambar.classList.add('aktif');
+            gambarBesar.src = sumber;
+            document.body.style.overflow = 'hidden';
+        }
+        function tutupGambar() {
+            kotakGambar.classList.remove('aktif');
+            document.body.style.overflow = 'auto';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') tutupGambar();
+        });
 
-  function resizeBirdCanvas() {
-    birdCanvas.width = window.innerWidth;
-    birdCanvas.height = window.innerHeight;
-  }
+        // Fungsi Kirim WhatsApp
+        document.getElementById('formPendaftaran').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const alamat = document.getElementById('alamat').value;
+            const nomorWA = '6282121120179';
+            const pesan = `Halo Admin Wonder Ultramen, saya ingin mendaftar menjadi anggota:%0A%0ANama Lengkap: ${nama}%0AAlamat: ${alamat}`;
+            window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
+        });
+    </script>
 
-  window.addEventListener('resize', resizeBirdCanvas);
-  resizeBirdCanvas();
-
-  for (let i = 0; i < 15; i++) {
-    birds.push({
-      x: Math.random() * birdCanvas.width,
-      y: Math.random() * birdCanvas.height / 2,
-      size: 10 + Math.random() * 10,
-      speedX: 1 + Math.random() * 1.5,
-      direction: Math.random() > 0.5 ? 1 : -1,
-      flutter: Math.random() * 0.5
-    });
-  }
-
-  function drawBird(x, y, size, direction) {
-    birdCtx.beginPath();
-    birdCtx.moveTo(x, y);
-    birdCtx.lineTo(x - size * direction, y + size / 2);
-    birdCtx.lineTo(x - size * direction, y - size / 2);
-    birdCtx.closePath();
-    birdCtx.fillStyle = 'white';
-    birdCtx.fill();
-  }
-
-  function animateBirds() {
-    birdCtx.clearRect(0, 0, birdCanvas.width, birdCanvas.height);
-    for (let bird of birds) {
-      bird.y += Math.sin(Date.now() * 0.005 + bird.flutter) * 0.5;
-      bird.x += bird.speedX * bird.direction;
-
-      if (bird.x < -20 || bird.x > birdCanvas.width + 20) {
-        bird.x = bird.direction === 1 ? -20 : birdCanvas.width + 20;
-        bird.y = Math.random() * birdCanvas.height / 2;
-      }
-
-      drawBird(bird.x, bird.y, bird.size, bird.direction);
-    }
-    requestAnimationFrame(animateBirds);
-  }
-
-  animateBirds();
-</script>
-
-<!-- Footer -->
-<section>
-  <p>&copy; 2025 | Wonder Ultramen Mahasiswa Community | Semua hak cipta dilindungi.</p>
-</section>
-<footer>
-  <section>
-    <h3>Hubungi kami di sini:</h3>
-    <ul class="social-icons">
-      <li><a href="https://chat.whatsapp.com/CO4FgK691yeKb19EB0DFaA" class="fab fa-whatsapp" title="WhatsApp"></a></li>
-      <li><a href="https://www.youtube.com/@wonderultramen" class="fab fa-youtube" title="YouTube"></a></li>
-      <li><a href="https://www.tiktok.com/@wonder_ultramen" class="fab fa-tiktok" title="Tiktok"></a></li>
-      <li><a href="https://x.com/wonderultramen" class="fab fa-twitter" title="Twitter"></a></li>
-      <li><a href="https://www.instagram.com/wonderultramen" class="fab fa-instagram" title="Instagram"></a></li>
-      <li><a href="https://www.facebook.com/profile.php?id=61576940013781" class="fab fa-facebook" title="Facebook"></a></li>
-    </ul>
-  </section>
-</footer>
-
-<script>
-  window.addEventListener("load", function () {
-    const preloader = document.getElementById("preloader");
-    preloader.style.opacity = "0";
-    setTimeout(() => {
-      preloader.style.display = "none";
-    }, 600);
-  });
-</script>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6860fed0f71f1219192e971c/1iute6nnu';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 </body>
 </html>
